@@ -1,4 +1,12 @@
+using Agenda_Web.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Configuración de la conexión con SQL Server
+builder.Services.AddDbContext<ApplicationDBContext>(opciones =>
+    opciones.UseSqlServer(builder.Configuration.GetConnectionString("agendadb")));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
